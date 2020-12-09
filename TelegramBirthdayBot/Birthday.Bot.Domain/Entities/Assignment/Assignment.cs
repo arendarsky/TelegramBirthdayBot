@@ -13,14 +13,16 @@ namespace Birthday.Bot.Domain.Entities.Assignment
 
     public class Assignment : IAssignment
     {
-        public Assignment(string description, IEnumerable<string> correctAnswers)
+        public Assignment(string description, string suggestion, IEnumerable<string> correctAnswers)
         {
             Description = description;
             CorrectAnswers = correctAnswers;
+            Suggestion = suggestion;
         }
 
         protected IEnumerable<string> CorrectAnswers { get; }
         public string Description { get; }
+        public string Suggestion { get; }
 
         public bool IsAnswerCorrect(string answer)
         {

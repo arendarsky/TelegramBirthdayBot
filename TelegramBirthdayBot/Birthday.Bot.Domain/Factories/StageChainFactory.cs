@@ -7,7 +7,7 @@ using Birthday.Bot.Domain.Entities.Stage;
 
 namespace Birthday.Bot.Domain.Factories
 {
-    public class StageChainFactory: IEntityFactory<IStageChainData, IStageChain>
+    public class StageChainFactory: IEntityFactory<IEnumerable<IStageData>, IStageChain>
     {
         private readonly IEntityFactory<IStageData, IStage> _stageFactory;
 
@@ -16,9 +16,9 @@ namespace Birthday.Bot.Domain.Factories
             _stageFactory = stageFactory;
         }
 
-        public IStageChain Make(IStageChainData data)
+        public IStageChain Make(IEnumerable<IStageData> data)
         {
-            return data.Stages.Aggregate<IStageData, IStageChain>(null,
+            return data.Aggregate<IStageData, IStageChain>(null,
                 (current, stageData) => new StageChain(_stageFactory.Make(stageData), current));
         }
     }

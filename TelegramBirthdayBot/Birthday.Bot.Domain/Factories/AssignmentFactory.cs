@@ -10,7 +10,7 @@ namespace Birthday.Bot.Domain.Factories
     {
         public IAssignment Make(IAssignmentData data)
         {
-            return new Assignment(data.Description, data.CorrectAnswers);
+            return new Assignment(data.Description, data.Suggestion, data.CorrectAnswers);
         }
     }
 }
