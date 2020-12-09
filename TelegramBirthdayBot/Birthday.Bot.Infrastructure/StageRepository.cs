@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Birthday.Bot.Domain.DataInterfaces.Stage;
 using Birthday.Bot.Services.Interfaces;
 
@@ -16,7 +16,7 @@ namespace Birthday.Bot.Infrastructure
 
         public IEnumerable<IStageData> GetAll()
         {
-            return _context.Stages;
+            return _context.Stages.OrderByDescending(stage => stage.Order);
         }
     }
 }

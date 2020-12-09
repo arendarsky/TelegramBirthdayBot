@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Birthday.Bot.Domain.DataInterfaces.Assignment;
+﻿using Birthday.Bot.Domain.DataInterfaces.Assignment;
 using Birthday.Bot.Domain.Entities.Assignment;
 
 namespace Birthday.Bot.Domain.Factories

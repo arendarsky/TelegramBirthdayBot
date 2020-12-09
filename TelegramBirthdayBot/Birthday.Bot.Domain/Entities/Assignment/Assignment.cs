@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Birthday.Bot.Domain.DataInterfaces.Assignment;
 
 namespace Birthday.Bot.Domain.Entities.Assignment
 {
     public interface IAssignment
     {
         string Description { get; }
+        string Suggestion { get; }
         bool IsAnswerCorrect(string answer);
     }
 

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Birthday.Bot.Domain.Entities.Stage
+﻿namespace Birthday.Bot.Domain.Entities.Stage
 {
     public interface IStageChain
     {

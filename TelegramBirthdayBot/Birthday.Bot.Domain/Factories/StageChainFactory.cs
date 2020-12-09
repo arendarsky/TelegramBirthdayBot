@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Birthday.Bot.Domain.DataInterfaces.Stage;
 using Birthday.Bot.Domain.Entities.Stage;
 

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Birthday.Bot.Domain.DataInterfaces.Assignment;
 using Birthday.Bot.Domain.DataInterfaces.Stage;
 using Birthday.Bot.Domain.Entities.Assignment;

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using Birthday.Bot.Domain.DataInterfaces.Stage;
 using Birthday.Bot.Domain.Entities.Stage;
 using Birthday.Bot.Domain.Factories;
 using Birthday.Bot.Services.Interfaces;
-using Birthday.Bot.Services.Models;
 
 namespace Birthday.Bot.Services.Services
 {

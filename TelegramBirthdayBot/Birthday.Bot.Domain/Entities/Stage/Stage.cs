@@ -1,6 +1,4 @@
-﻿using Birthday.Bot.Domain.DataInterfaces.Stage;
-using Birthday.Bot.Domain.Entities.Assignment;
-using Birthday.Bot.Domain.Enums;
+﻿using Birthday.Bot.Domain.Entities.Assignment;
 
 namespace Birthday.Bot.Domain.Entities.Stage
 {
@@ -10,6 +8,7 @@ namespace Birthday.Bot.Domain.Entities.Stage
         bool IsCompleted { get; }
         bool IsSuccessful { get; }
         string AssignmentDescription { get; }
+        string Suggestion { get; }
         void Complete(string answer);
     }
 
@@ -26,6 +25,10 @@ namespace Birthday.Bot.Domain.Entities.Stage
         public bool IsCompleted { get; protected set; }
         public bool IsSuccessful { get; protected set; }
         public string AssignmentDescription => Assignment?.Description;
+
+        public string Suggestion => string.IsNullOrWhiteSpace(Assignment?.Suggestion)
+            ? "Не сдавайся, подумай ещё!"
+            : Assignment.Suggestion;
 
         public virtual void Complete(string answer)
         {
