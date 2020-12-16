@@ -7,9 +7,6 @@
         public const string Start = "/start";
         public const string StartGame = "Хочу начать День рождения!🥳";
         public const string EndGame = "Да, да, это я, можно уже побыстрее! 😤";
-        public const string MySubscriptions = "Мои подписки";
-        public const string SetName = "SetName";
-        public const string SetDescription = "SetDescription";
 
         #endregion
 

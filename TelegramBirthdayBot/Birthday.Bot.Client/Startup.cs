@@ -1,3 +1,5 @@
+using Birthday.Bot.Client.Factories;
+using Birthday.Bot.Client.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -26,14 +28,18 @@ namespace Birthday.Bot.Client
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers().AddNewtonsoftJson();
-            services.AddSingleton<MemoryContext>();
+            services.AddSingleton<IDataContext, FileContext>();
             services.AddFactories();
             services.AddRepositories();
             services.AddServices();
             AddTelegramBot(services);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<ITelegramBotService, TelegramBotService>();
+            services.AddScoped<IPrizeSendingService, PrizeSendingService>();
+            services.AddSingleton<PrizeFactory>();
+            services.AddSingleton<CommandFactory>();
             services.AddMediatR(typeof(Startup));
+            services.Configure<TelegramBotSettings>(Configuration.GetSection("TelegramBot.Settings"));
         }
 
         private void AddTelegramBot(IServiceCollection services)

@@ -22,6 +22,7 @@ namespace Birthday.Bot.Services.Extensions
         {
             serviceCollection.AddScoped<IStageChainService, StageChainService>();
             serviceCollection.AddSingleton<IStateService, StateService>();
+            serviceCollection.AddScoped<IPrizeService, PrizeService>();
         }
     }
 }

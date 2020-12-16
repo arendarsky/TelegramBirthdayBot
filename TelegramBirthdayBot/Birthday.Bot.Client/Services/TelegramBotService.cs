@@ -1,14 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Birthday.Bot.Client.Commands;
+using Birthday.Bot.Client.Factories;
 using Birthday.Bot.Client.Settings;
 using MediatR;
 using Newtonsoft.Json;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
-namespace Birthday.Bot.Client
+namespace Birthday.Bot.Client.Services
 {
     public interface ITelegramBotService
     {
@@ -21,21 +20,13 @@ namespace Birthday.Bot.Client
     {
         private readonly ITelegramBotClient _telegramBotClient;
         private readonly IMediator _mediator;
-        private readonly IEnumerable<BaseMessageCommand> _messageCommands;
-        private readonly IEnumerable<BaseCallbackCommand> _callbackCommands;
+        private readonly CommandFactory _commandFactory;
 
-        public TelegramBotService(ITelegramBotClient telegramBotClient, IMediator mediator)
+        public TelegramBotService(ITelegramBotClient telegramBotClient, IMediator mediator, CommandFactory commandFactory)
         {
             _telegramBotClient = telegramBotClient;
             _mediator = mediator;
-            _messageCommands = new List<BaseMessageCommand>
-            {
-                new StartCommand(), new StartGameCommand()
-            };
-            _callbackCommands = new List<BaseCallbackCommand>
-            {
-                
-            };
+            _commandFactory = commandFactory;
         }
 
         public async Task SetWebHookAsync(string url)
@@ -47,19 +38,12 @@ namespace Birthday.Bot.Client
 
         public async Task HandleMessageAsync(Message message)
         {
-            var command = GetMessageCommand(message.Text);
+            var command = _commandFactory.MakeMessageCommand(message);
 
             if (command == null)
             {
-                command = new UserInputCommand
-                {
-                    Message = message
-                };
-                await _mediator.Send(command);
                 return;
             }
-
-            command.Message = message;
 
             await _mediator.Send(command);
         }
@@ -85,11 +69,6 @@ namespace Birthday.Bot.Client
             return $"{ url}/messageksdhnd21sd/updatekjjwnjji1213dk";
         }
 
-        private BaseMessageCommand GetMessageCommand(string name)
-        {
-            return _messageCommands.FirstOrDefault(c => c.Name == name);
-        }
-
         private static CallbackData GetCallbackData(string data)
         {
             return JsonConvert.DeserializeObject<CallbackData>(data);
@@ -97,7 +76,7 @@ namespace Birthday.Bot.Client
 
         private BaseCallbackCommand GetCallbackCommand(CallbackData data)
         {
-            return _callbackCommands.FirstOrDefault(c => c.Name == data.Name);
+            return null;
         }
 
         #endregion

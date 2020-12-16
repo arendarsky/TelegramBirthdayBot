@@ -8,8 +8,8 @@
         public const string CorrectAnswer = "Верно! 🤩";
         public const string NotStarted = "Сначала нужно начать День рождения!";
         public const string EndGame = "Ура!!! Раз ты это видишь, то ты точно та самая Надя! 💥💥💥";
-        public const string OtherGoals = "Цели других пользователей";
-        public const string MySubscriptions = "Цели, на которые вы подписались";
+        public const string WrongStageOrder = "Неправильный номер вопроса";
+        public const string PrizeIsSet = "Награда установлена";
         public const string Subscribed = "Вы успешно подписались на цель";
         public const string Unsubscribed = "Вы успешно отписались от цели";
         public const string GoalRemoved = "Цель успешно удалена";

@@ -3,9 +3,12 @@ using Telegram.Bot.Types;
 
 namespace Birthday.Bot.Client.Commands
 {
-    public abstract class BaseMessageCommand: IRequest<bool>
+    public abstract class BaseMessageCommand: IRequest
     {
-        public abstract string Name { get; }
-        public Message Message { get; set; }
+        protected BaseMessageCommand(Message message)
+        {
+            Message = message;
+        }
+        public Message Message { get; }
     }
 }

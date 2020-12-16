@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
 using Birthday.Bot.Domain.DataInterfaces.Assignment;
 using Birthday.Bot.Domain.DataInterfaces.Stage;
 using Birthday.Bot.Infrastructure.DataModels;
+using Newtonsoft.Json;
 
 namespace Birthday.Bot.Infrastructure
 {
-    public class MemoryContext
+    public class MemoryContext: IDataContext
     {
         public MemoryContext()
         {
@@ -22,6 +25,11 @@ namespace Birthday.Bot.Infrastructure
         }
 
         public IEnumerable<IStageData> Stages { get; }
+        public void SaveChanges()
+        {
+            var stringJson = JsonConvert.SerializeObject(Stages);
+            File.WriteAllText("stages.json", stringJson);
+        }
 
         public static StageData CreateStageData(int order, IAssignmentData assignment)
         {

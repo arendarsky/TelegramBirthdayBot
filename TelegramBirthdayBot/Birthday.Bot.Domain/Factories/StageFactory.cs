@@ -17,7 +17,7 @@ namespace Birthday.Bot.Domain.Factories
         public IStage Make(IStageData data)
         {
             var assignment = _assignmentFactory.Make(data.Assignment);
-            return new Stage(data.Order, assignment);
+            return new Stage(data.Order, assignment, data.Prizes);
         }
     }
 }

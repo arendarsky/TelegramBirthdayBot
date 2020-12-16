@@ -35,3 +35,4 @@ logs/
 /AvatarAppBackend/Avatar.App.Api/logs/ *.txt
 appsettings.json
 firebaseAuth.json
+stages.json

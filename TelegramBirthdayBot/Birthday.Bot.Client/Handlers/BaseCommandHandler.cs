@@ -5,7 +5,7 @@ using Telegram.Bot;
 
 namespace Birthday.Bot.Client.Handlers
 {
-    public abstract class BaseCommandHandler<TCommand, TResponse>: IRequestHandler<TCommand, TResponse> where TCommand: IRequest<TResponse>
+    public abstract class BaseCommandHandler<TCommand> : IRequestHandler<TCommand> where TCommand : IRequest<Unit>
     {
         protected readonly ITelegramBotClient TelegramBotClient;
 
@@ -14,6 +14,6 @@ namespace Birthday.Bot.Client.Handlers
             TelegramBotClient = telegramBotClient;
         }
 
-        public abstract Task<TResponse> Handle(TCommand request, CancellationToken cancellationToken);
+        public abstract Task<Unit> Handle(TCommand request, CancellationToken cancellationToken);
     }
 }

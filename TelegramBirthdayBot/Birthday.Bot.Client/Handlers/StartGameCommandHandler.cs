@@ -8,11 +8,12 @@ using Birthday.Bot.Client.Constants;
 using Birthday.Bot.Client.Models;
 using Birthday.Bot.Services.Models;
 using Birthday.Bot.Services.Services;
+using MediatR;
 using Telegram.Bot;
 
 namespace Birthday.Bot.Client.Handlers
 {
-    public class StartGameCommandHandler: BaseCommandHandler<StartGameCommand, bool>
+    public class StartGameCommandHandler: BaseCommandHandler<StartGameCommand>
     {
         private readonly IStateService _stateService;
         private readonly IStageChainService _stageChainService;
@@ -23,7 +24,7 @@ namespace Birthday.Bot.Client.Handlers
             _stageChainService = stageChainService;
         }
 
-        public override async Task<bool> Handle(StartGameCommand request, CancellationToken cancellationToken)
+        public override async Task<Unit> Handle(StartGameCommand request, CancellationToken cancellationToken)
         {
             var chat = request.Message.Chat;
             var player = (Player)chat;
@@ -32,7 +33,7 @@ namespace Birthday.Bot.Client.Handlers
             await TelegramBotClient.SendTextMessageAsync(chat.Id, MessageTexts.BeforeFirstQuestion, cancellationToken: cancellationToken);
             var firstQuestion = stageChain.Stage.AssignmentDescription;
             await TelegramBotClient.SendTextMessageAsync(chat.Id, firstQuestion, cancellationToken: cancellationToken);
-            return true;
+            return Unit.Value;
         }
     }
 }

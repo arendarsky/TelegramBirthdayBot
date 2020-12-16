@@ -1,7 +1,11 @@
-﻿namespace Birthday.Bot.Client.Commands
+﻿using Telegram.Bot.Types;
+
+namespace Birthday.Bot.Client.Commands
 {
     public class UserInputCommand: BaseMessageCommand
     {
-        public override string Name => null;
+        public UserInputCommand(Message message) : base(message)
+        {
+        }
     }
 }
