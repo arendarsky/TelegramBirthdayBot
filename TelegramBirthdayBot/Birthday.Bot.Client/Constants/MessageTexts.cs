@@ -7,8 +7,8 @@
         public const string WrongAnswer = "Ну вот 😞 неверно!";
         public const string CorrectAnswer = "Верно! 🤩";
         public const string NotStarted = "Сначала нужно начать День рождения!";
-        public const string EndGame = "Ура!!! Раз ты это видишь, то ты точно та самая Надя! 💥💥💥";
-        public const string WrongStageOrder = "Неправильный номер вопроса";
+        public const string EndGame = "Ну вот и всё";
+        public const string PresentLocation = "Ладно, ладно, вот код 2663. А куда его вводить, догадайся сама)";
         public const string PrizeIsSet = "Награда установлена";
         public const string Subscribed = "Вы успешно подписались на цель";
         public const string Unsubscribed = "Вы успешно отписались от цели";

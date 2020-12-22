@@ -24,29 +24,27 @@ namespace Birthday.Bot.Client.Services
             _telegramBotClient = telegramBotClient;
         }
 
-        public Task SendPrizes(long chatId, IEnumerable<Prize> prizes, CancellationToken cancellationToken = default)
+        public async Task SendPrizes(long chatId, IEnumerable<Prize> prizes, CancellationToken cancellationToken = default)
         {
             foreach (var prize in prizes)
             {
-                SendPrize(chatId, prize, cancellationToken);
+                await SendPrize(chatId, prize, cancellationToken);
             }
-
-            return Task.CompletedTask;
         }
 
-        private Task SendPrize(long chatId, Prize prize, CancellationToken cancellationToken)
+        private async Task SendPrize(long chatId, Prize prize, CancellationToken cancellationToken)
         {
             switch (prize.Type)
             {
                 case PrizeTypes.Audio:
-                    _telegramBotClient.SendAudioAsync(chatId, prize.Hash, cancellationToken: cancellationToken);
-                    return Task.CompletedTask;
+                    await _telegramBotClient.SendAudioAsync(chatId, prize.Hash, cancellationToken: cancellationToken);
+                    return;
                 case PrizeTypes.Sticker:
-                    _telegramBotClient.SendStickerAsync(chatId, prize.Hash, cancellationToken: cancellationToken);
-                    return Task.CompletedTask;
+                    await _telegramBotClient.SendStickerAsync(chatId, prize.Hash, cancellationToken: cancellationToken);
+                    return;
                 case PrizeTypes.Video:
-                    _telegramBotClient.SendVideoAsync(chatId, prize.Hash, cancellationToken: cancellationToken);
-                    return Task.CompletedTask;
+                    await _telegramBotClient.SendVideoAsync(chatId, prize.Hash, cancellationToken: cancellationToken);
+                    return;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
